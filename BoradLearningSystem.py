@@ -9,12 +9,13 @@ from sklearn import preprocessing
 
 
 class BLS:
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30):
+    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
         self.FeatureNodes = NumFeatureNodes
         self.FeatureWindows = NumWindows  
         self.EnhancementNodes = NumEnhance
         self.S = S
         self.C = C
+        self.is_argmax = is_argmax
 
     def GridSearchCV_BLS(NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30):
         return 0
@@ -184,13 +185,17 @@ class BLSClassifier(BLS):
         self.W = np.dot(Pinv_Output, train_y)
 
         OutputOfTrain = np.dot(Input_OutputLayer, self.W)  # 计算预测输出
-        predlabel = OutputOfTrain.argmax(axis=1)
 
-        # 预测标签解嵌套
-        predlabel = [int(i) for j in predlabel for i in j]
-
+        if self.is_argmax:
+            predlabel = OutputOfTrain.argmax(axis=1)
+            # 预测标签解嵌套
+            predlabel = [int(i) for j in predlabel for i in j]
+        else:
+            predlabel = OutputOfTrain
+        
         return predlabel
-
+    
+    
     def predict(self, test_x):
         test_x = preprocessing.scale(test_x, axis=1)
         Feature_InputDataWithBiasTest = np.hstack([test_x, 0.1 * np.ones((test_x.shape[0], 1))])
@@ -208,9 +213,12 @@ class BLSClassifier(BLS):
         Input_OutputLayerTest = np.hstack([Output_FeatureMappingLayerTest, Output_EnhanceLayerTest])  # 合并特征层和增强层作为测试输出层输入
 
         OutputOfTest = np.dot(Input_OutputLayerTest, self.W)  # 计算预测输出
-        predlabel = OutputOfTest.argmax(axis=1)
-        
-        # 预测标签解嵌套
-        predlabel = [int(i) for j in predlabel for i in j]
 
+        if self.is_argmax:
+            predlabel = OutputOfTest.argmax(axis=1)
+            # 预测标签解嵌套
+            predlabel = [int(i) for j in predlabel for i in j]
+        else:
+            predlabel = OutputOfTest
+        
         return predlabel
