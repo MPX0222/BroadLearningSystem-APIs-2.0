@@ -12,3 +12,5 @@
 **-- · Conv-BLS**: An ensemble model based on a simple convoloution module and a Broad Learning System module, which enhance the ability of feature extraction for original BLS. API of this model would be upload sonn.
 
 **-- · MultiInput-BLS**: A novel idea of BLS. Upload soon.
+
+**-- · Deep-Broad Ensemble Model**: A novel model based on 3D-Residual Conv Module and Broad Learning System. Upload soon. Paper Link:
