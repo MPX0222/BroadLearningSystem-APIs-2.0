@@ -3,7 +3,7 @@
 
 ### API Models (Updated at 2023.09.06):
 
--- **BLS**: Based Broad Learning System, including ***BLSRegressor*** and ***BLSClassifier***. API ***fit*** and ***predict*** is available now. ***GridSearch*** will online soon.
+-- **BLS**: Based Broad Learning System, including ***BLSRegressor*** and ***BLSClassifier***. API ***fit*** and ***predict*** is available now. ***GridSearch*** will online soon. Paper Link: https://ieeexplore.ieee.org/abstract/document/7987745/
 
 -- **Stacked-BLS**: A Stacked Model of Broad Learning System, with several residual learning block, including ***StackedBLSClassifier***. API ***fit*** and ***predict*** is available now.. 
 
