@@ -1,7 +1,14 @@
 # BroadLearningSystemTools-2.0
+
+
+
 ***New Toolbox of Broad Learning System, with sklearn liked APIs. Created at 2023.08***
 
-***A survey of current Broad learning Models:*** https://ieeexplore.ieee.org/abstract/document/9380770/
+***《A survey of current Broad learning Models》- (English Version):*** https://ieeexplore.ieee.org/abstract/document/9380770/
+
+***《宽度学习研究进展》-（中文版）：*** https://bar.cnki.net/bar/download/order?id=jBGETXBNdPImvx70aLAuJPYxPoFw%2Bp%2Bi0fIiSrcN6lUJTlH2FDLHXIcg35FajBTYu0Y9cJyaeMzChUwbF%2BvmtEGxVkq8YHJNz4jV3WhknTor4qya3J1MXVAeiRx5OlqsTexkrKzFwIrft71n9EQs%2FUN1tZaOZ9Yf2CwqWvTYvKvMu%2FsTy5QX8vMQEr7plrpCMiiM8yb8tueWVNRKR21teXcoBQGVUiyBxvQTy79iQIo%3D
+
+---
 
 ### API Models (Updated at 2023.09.06):
 
