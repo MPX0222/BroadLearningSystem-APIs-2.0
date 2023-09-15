@@ -20,4 +20,4 @@
 
 **-- · Deep-Broad Ensemble Model**: A novel model based on 3D-Residual Conv Module and Broad Learning System. Upload soon. Paper Link: https://www.frontiersin.org/articles/10.3389/fnins.2023.1137557/full
 
-**-- · BLS-AutoEncoder**
+**-- · BLS-AutoEncoder**: A novel structure based on BLS, which is used to extract the feacture of original data.
