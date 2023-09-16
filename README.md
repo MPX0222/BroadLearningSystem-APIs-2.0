@@ -16,8 +16,9 @@
 
 **-- · Stacked-BLS**: A Stacked Model of Broad Learning System, with several residual learning block, including ***StackedBLSClassifier***. API ***fit*** and ***predict*** is available now. Paper Link: https://ieeexplore.ieee.org/abstract/document/9308927/
 
+**-- · BLS-AutoEncoder**: A novel Auto-Encode structure based on BLS, which is used to extract the feacture of original data. API ***fit*** is available now, whose output is feature vectors, not prediction. Paper Link: https://ieeexplore.ieee.org/abstract/document/9661311
+
 **-- · Conv-BLS**: An ensemble model based on a simple convoloution module and a Broad Learning System module, which enhance the ability of feature extraction for original BLS. API of this model would be upload sonn.
 
 **-- · Deep-Broad Ensemble Model**: A novel model based on 3D-Residual Conv Module and Broad Learning System. Upload soon. Paper Link: https://www.frontiersin.org/articles/10.3389/fnins.2023.1137557/full
 
-**-- · BLS-AutoEncoder**: A novel structure based on BLS, which is used to extract the feacture of original data.
