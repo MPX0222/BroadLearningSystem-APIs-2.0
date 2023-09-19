@@ -1,11 +1,13 @@
 from BoradLearningSystem import BLSRegressor, BLSClassifier
-from BroadLearningSystemBasedAutoEncoder import BLSAEExtractor
+from BroadLearningSystemBasedAutoEncoder import BLSAEExtractor, StackedBLSAEExtractor
 from sklearn.datasets import load_iris, load_breast_cancer
 
 # -- 模型初始化 --
 # regressor = BLSRegressor(NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30)
 # classifier = BLSClassifier()
 extractor = BLSAEExtractor()
+stack_extractor = StackedBLSAEExtractor()
+stack_extractor_2 = StackedBLSAEExtractor(is_multi_feature=True)
 
 
 # -- mat文件 加载minst --
@@ -28,8 +30,15 @@ cls_data, cls_label = cls_dataset['data'], cls_dataset['target']
 print(cls_data.shape)
 
 # -- BLSAE --
-feature_encode_x = extractor.fit(cls_data, cls_label)
+feature_encode_x = extractor.fit(cls_data)
 print(feature_encode_x.shape)
+
+# -- Stacked BLSAE --
+feature_encode_x = stack_extractor.fit(cls_data)
+print(feature_encode_x.shape)
+
+feature_encode_x = stack_extractor_2.fit(cls_data)
+print(feature_encode_x)
 
 # -- 回归 --
 # train_output = regressor.fit(data, label)

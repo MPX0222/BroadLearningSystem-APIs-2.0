@@ -1,15 +1,15 @@
 from BoradLearningSystem import *
 
 class BLSAutoEncoder(BLS):
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30, NumBlock=3):
+    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30):
         super().__init__()
 
 
 class BLSAEExtractor(BLSAutoEncoder):
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30, NumBlock=3):
+    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30):
         super().__init__()
 
-    def fit(self, train_x, train_y):
+    def fit(self, train_x):
         # --Train--
         train_x = preprocessing.scale(train_x, axis=1)  # 标准化处理样本
         Feature_InputDataWithBias = np.hstack([train_x, 0.1 * np.ones((train_x.shape[0], 1))])  # 将输入矩阵进行行链接，即平铺展开整个矩阵
@@ -62,3 +62,32 @@ class BLSAEExtractor(BLSAutoEncoder):
         OutputFeatureX = np.dot(train_x, self.W.T)  # 计算预测输出
 
         return OutputFeatureX
+    
+
+class StackedBLSAEExtractor(BLSAutoEncoder):
+    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30, NumBlock=3, is_multi_feature=False):
+        super().__init__()
+        self.NumBlock = NumBlock
+        self.is_multi_feature = is_multi_feature
+
+        
+    def fit(self, train_x):
+        self.block_list = []
+        block_feature_dict = {}
+
+        original_feature = train_x
+        
+        for i in range(self.NumBlock):
+            block_module = BLSAEExtractor()
+            block_fit_feature = block_module.fit(original_feature)
+            block_feature_dict['Block' + str(i+1)] = np.array(block_fit_feature)
+
+            original_feature = np.array(block_fit_feature)
+            
+            self.block_list.append(block_module)
+
+
+        if self.is_multi_feature:
+            return block_feature_dict
+        else:
+            return block_fit_feature
