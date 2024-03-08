@@ -16,7 +16,7 @@ class StackBLSClassifier(StackBLS):
         block_train_y = train_y
         
         for i in range(self.NumBlock):
-            block_module = BLS()
+            block_module = BLSClassifier(is_argmax=False)
             block_fit_pred = block_module.fit(train_x, block_train_y)
             block_pred_list.append(block_fit_pred)
 
