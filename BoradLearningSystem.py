@@ -9,7 +9,7 @@ from sklearn import preprocessing
 
 
 class BLS:
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
+    def __init__(self, NumFeatureNodes=10, NumWindows=100, NumEnhance=1000, S=0.5, C=2**-30, is_argmax=True):
         self.FeatureNodes = NumFeatureNodes
         self.FeatureWindows = NumWindows  
         self.EnhancementNodes = NumEnhance
@@ -63,7 +63,7 @@ class BLS:
 
 
 class BLSRegressor(BLS):
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30):
+    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
         super().__init__()
 
     def fit(self, train_x, train_y):
@@ -123,9 +123,9 @@ class BLSRegressor(BLS):
 
 
 class BLSClassifier(BLS):
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30):
+    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
         super().__init__()
-
+        self.is_argmax = is_argmax
     def fit(self, train_x, train_y, is_excel_label=False):
         """模型本体"""
 
@@ -188,6 +188,7 @@ class BLSClassifier(BLS):
 
         if self.is_argmax:
             predlabel = OutputOfTrain.argmax(axis=1)
+            # print(predlabel)
             # 预测标签解嵌套
             predlabel = [int(i) for j in predlabel for i in j]
         else:
