@@ -3,26 +3,26 @@
 
 
 > 🔥 ***A Modified Toolbox for Broad Learning System, with sklearn liked APIs and Codes. 
-> 📌 2023.08 Now BLS, Stacked-BLS, BLS-AE are Released.***
 
-✅ How to deploy this respiratory?
-======
+> 📌 2023.08 Now APIs for BLS, Stacked-BLS, BLS-AE are Released.***
+
+### ✅ How to deploy this respiratory?
+---
 ```
 git clone https://github.com/MPX0222/BroadLearningSystemTools-2.0.git
 pip install -r requirements.txt
 ```
 
-💬 Surveys of Broad Learning System:
-======
-
+### 💬 Surveys of Broad Learning System:
+---
 * ***《A survey of current Broad learning Models》- (English Version, South China University of Technology)*** : https://ieeexplore.ieee.org/abstract/document/9380770/
 
 * ***《宽度学习研究进展》-（中文版，华南理工大学）*** : http://www.cnki.com.cn/Article/CJFDTotal-JSYJ202108003.htm
 
 
 
-💭 Supported Models:
-======
+### 💭 Supported Models:
+---
 
 | Model | Affiliation | Year | Publication | Available API |
 |-------|-------|-------|-------|-------|
