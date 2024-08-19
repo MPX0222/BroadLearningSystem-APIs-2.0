@@ -29,7 +29,7 @@ pip install -r requirements.txt
 | BLS | South China University of Technology | 2018 | [![Static Badge](https://img.shields.io/badge/Paper-TNNLS_2018-brightgreen?logo=Arxiv)](https://ieeexplore.ieee.org/abstract/document/7987745/) | `BLSRegressor` `BLSClassifier` |
 |Fuzzy-BLS| Beijing Normal University| 2018 |[![Static Badge](https://img.shields.io/badge/Paper-TCYB_2018-brightgreen?logo=Arxiv)](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8432091)| `FuzzyBLS (Not Available Yet)` |
 |Stacked-BLS| South China University of Technology | 2020 |[![Static Badge](https://img.shields.io/badge/Paper-TSMC_2020-brightgreen?logo=Arxiv)]()| `StackBLSClassifier` |
-|BLS-LRF|| 2021 |[![Static Badge](https://img.shields.io/badge/Paper-Arxiv_2021-brightgreen?logo=Arxiv)]()| `ConvBLS (Not Available Yet)` |
+|Conv-BLS|| 2021 |  | `ConvBLS (Not Available Yet)` |
 |Tree-BLS| Beijing University of Technology | 2022 |[![Static Badge](https://img.shields.io/badge/Paper-TNNLS_2022-brightgreen?logo=Arxiv)]()| `TreeBLS (Not Available Yet)` |
 |BLS-AE| South China University of Technology | 2023 |[![Static Badge](https://img.shields.io/badge/Paper-TKDE_2023-brightgreen?logo=Arxiv)]()| `BLSAutoEncoder` `StackedBLSAEExtractor` `BLSAEExtractor` `SparseBLSAutoEncoder (Not Available Yet)`|
 |3D-Conv-BLS| Jinan University| 2023 |[![Static Badge](https://img.shields.io/badge/Paper-Frontiers_2023-brightgreen?logo=Arxiv)]()| `3DConvBLS (Not Available Yet)` |
