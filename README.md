@@ -2,9 +2,9 @@
 
 
 
-> 🔥 ***A Modified Toolbox for Broad Learning System, with sklearn liked APIs and Codes. 
+> 🔥 ***A Modified Toolbox for Broad Learning System, with sklearn liked APIs and Codes.***
 
-> 📌 2023.08 Now APIs for BLS, Stacked-BLS, BLS-AE are Released.***
+> 📌 ***2023.08 Now APIs for BLS, Stacked-BLS, BLS-AE are Released.***
 
 ### ✅ How to deploy this respiratory?
 ---
