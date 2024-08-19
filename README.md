@@ -2,29 +2,37 @@
 
 
 
-> ***New Toolbox of Broad Learning System, with sklearn liked APIs. Created at 2023.08***
+> 🔥 ***A Modified Toolbox for Broad Learning System, with sklearn liked APIs and Codes. 
+> 📌 2023.08 Now BLS, Stacked-BLS, BLS-AE are Released.***
 
----
+✅ How to deploy this respiratory?
+======
+```
+git clone https://github.com/MPX0222/BroadLearningSystemTools-2.0.git
+pip install -r requirements.txt
+```
 
-### 💬 Surveys of Broad Learning System (Updated at 2023.09.23):
+💬 Surveys of Broad Learning System:
+======
 
 * ***《A survey of current Broad learning Models》- (English Version, South China University of Technology)*** : https://ieeexplore.ieee.org/abstract/document/9380770/
 
 * ***《宽度学习研究进展》-（中文版，华南理工大学）*** : http://www.cnki.com.cn/Article/CJFDTotal-JSYJ202108003.htm
 
----
 
-### 💭 API Models (Updated at 2023.09.23):
 
-* ***BLS（South China University of Technology, 2018）*** : Based Broad Learning System, including ***BLSRegressor*** and ***BLSClassifier***. API `fit` and `predict` is available now. `GridSearch` will online soon. Paper Link: https://ieeexplore.ieee.org/abstract/document/7987745/
+💭 Supported Models:
+======
 
-* ***Stacked-BLS（South China University of Technology, 2021）*** : A Stacked Model of Broad Learning System, with several residual learning block, including ***StackedBLSClassifier***. API `fit` and `predict` is available now. Paper Link: https://ieeexplore.ieee.org/abstract/document/9308927/
+| Model | Affiliation | Year | Publication | Available API |
+|-------|-------|-------|-------|-------|
+| BLS | South China University of Technology | 2018 | [![Static Badge](https://img.shields.io/badge/Paper-TNNLS_2018-brightgreen?logo=Arxiv)](https://ieeexplore.ieee.org/abstract/document/7987745/) | `BLSRegressor` `BLSClassifier` |
+|Fuzzy-BLS| Beijing Normal University| 2018 |[![Static Badge](https://img.shields.io/badge/Paper-TCYB_2018-brightgreen?logo=Arxiv)](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8432091)| `FuzzyBLS (Not Available Yet)` |
+|Stacked-BLS| South China University of Technology | 2020 |[![Static Badge](https://img.shields.io/badge/Paper-TSMC_2020-brightgreen?logo=Arxiv)]()| `StackBLSClassifier` |
+|BLS-LRF|| 2021 |[![Static Badge](https://img.shields.io/badge/Paper-Arxiv_2021-brightgreen?logo=Arxiv)]()| `ConvBLS (Not Available Yet)` |
+|Tree-BLS| Beijing University of Technology | 2022 |[![Static Badge](https://img.shields.io/badge/Paper-TNNLS_2022-brightgreen?logo=Arxiv)]()| `TreeBLS (Not Available Yet)` |
+|BLS-AE| South China University of Technology | 2023 |[![Static Badge](https://img.shields.io/badge/Paper-TKDE_2023-brightgreen?logo=Arxiv)]()| `BLSAutoEncoder` `StackedBLSAEExtractor` `BLSAEExtractor` `SparseBLSAutoEncoder (Not Available Yet)`|
+|3D-Conv-BLS| Jinan University| 2023 |[![Static Badge](https://img.shields.io/badge/Paper-Frontiers_2023-brightgreen?logo=Arxiv)]()| `3DConvBLS (Not Available Yet)` |
 
-* ***BLS-AutoEncoder（South China University of Technology, 2023）*** : A novel Auto-Encode structure based on BLS, which is used to extract the feacture of original data. These APIs contains ***BLSAEExtractor*** and ***StackedBLSAEExtractor***. API `fit` is available now, whose output is feature vectors, not prediction. Please check the usage of APIs in `test_demo.py` Paper Link: https://ieeexplore.ieee.org/abstract/document/9661311
 
-* ***BLS-LRF*** : An ensemble model based on a simple convoloution module and a Broad Learning System module, which enhance the ability of feature extraction for original BLS. API of this model would be upload sonn.
-
-* ***Deep-Broad Ensemble Model（JiNan University, 2023）*** : A novel model based on 3D-Residual Conv Module and Broad Learning System. Upload soon. Paper Link: https://www.frontiersin.org/articles/10.3389/fnins.2023.1137557/full
-
-* ***Tree-BLS（Beijing University of Technology, 2022）*** : A novel BLS model for enhancing the efficiency of small data modeling with various dimensions, whose original mapping neurons is replaced by tree modules. Paper Link: https://ieeexplore.ieee.org/abstract/document/9938406
 

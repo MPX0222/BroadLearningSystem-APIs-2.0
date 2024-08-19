@@ -4,7 +4,6 @@ class BLSAutoEncoder(BLS):
     def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30):
         super().__init__()
 
-
 class BLSAEExtractor(BLSAutoEncoder):
     def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30):
         super().__init__()
@@ -63,7 +62,6 @@ class BLSAEExtractor(BLSAutoEncoder):
 
         return OutputFeatureX
     
-
 class StackedBLSAEExtractor(BLSAutoEncoder):
     def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2 ** -30, NumBlock=3, is_multi_feature=False):
         super().__init__()

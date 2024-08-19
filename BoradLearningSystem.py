@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as npinv
 import pandas as pd
 
 from scipy import linalg as LA
@@ -6,7 +6,12 @@ from scipy import io as scio
 from numpy import random
 from sklearn import preprocessing
 
+class GridSearchCV:
+    def __init__(self) -> None:
+        pass
 
+    def run():
+        return None
 
 class BLS:
     def __init__(self, NumFeatureNodes=10, NumWindows=100, NumEnhance=1000, S=0.5, C=2**-30, is_argmax=True):
@@ -17,32 +22,23 @@ class BLS:
         self.C = C
         self.is_argmax = is_argmax
 
-    def GridSearchCV_BLS(NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30):
-        return 0
-
-    def tansig(self, x):
+    def _tansig(self, x):
         return (2/(1+np.exp(-2*x)))-1
     
-    def relu(self, x):
+    def _relu(self, x):
         return np.maximum(0, x)
 
-    def pinv(self, A, reg):
+    def _pinv(self, A, reg):
         return np.mat(reg*np.eye(A.shape[1])+A.T.dot(A)).I.dot(A.T)
     
-    def cls_pinv(self, matrix):
+    def _pinv_cls(self, matrix):
         return np.mat(self.C * np.eye(matrix.shape[1]) + matrix.T.dot(matrix)).I.dot(matrix.T)
 
-    '''
-    参数压缩
-    '''
-    def shrinkage(self, a, b):
+    def _shrinkage(self, a, b):
         z = np.maximum(a - b, 0) - np.maximum(-a - b, 0)
         return z
 
-    '''
-    参数稀疏化
-    '''
-    def sparse_bls(self, A, b):
+    def _sparse_bls(self, A, b):
         lam = 0.001
         itrs = 50
         AA = np.dot(A.T, A)
@@ -56,15 +52,14 @@ class BLS:
         for i in range(itrs):
             tempc = ok - uk
             ck = L2 + np.dot(L1, tempc)
-            ok = self.shrinkage(ck + uk, lam)
+            ok = self._shrinkage(ck + uk, lam)
             uk += ck - ok
             wk = ok
         return wk
 
-
 class BLSRegressor(BLS):
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
-        super().__init__()
+    def _init_(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
+        super()._init_()
 
     def fit(self, train_x, train_y):
         u = 0
@@ -85,7 +80,7 @@ class BLSRegressor(BLS):
             A1 = H1.dot(WeightFea)
             scaler1 = preprocessing.MinMaxScaler(feature_range=(-1, 1)).fit(A1)
             A1 = scaler1.transform(A1)
-            WeightFeaSparse = self.sparse_bls(A1, H1).T
+            WeightFeaSparse = self._sparse_bls(A1, H1).T
             self.WFSparse.append(WeightFeaSparse)
 
             T1 = H1.dot(WeightFeaSparse)
@@ -96,9 +91,9 @@ class BLSRegressor(BLS):
 
         H2 = np.hstack([y, 0.1 * np.ones([y.shape[0], 1])])
         T2 = H2.dot(self.WeightEnhan)
-        T2 = self.tansig(T2)
+        T2 = self._tansig(T2)
         T3 = np.hstack([y, T2])
-        self.WeightTop = self.pinv(T3, self.C).dot(train_y)
+        self.WeightTop = self._pinv(T3, self.C).dot(train_y)
 
         print(self.WeightTop.shape)
         NetoutTrain = T3.dot(self.WeightTop.T)
@@ -115,16 +110,15 @@ class BLSRegressor(BLS):
             TT1 = (TT1 - self.meanOfEachWindow[i]) / self.distOfMaxAndMin[i]
             yy1[:, self.FeatureNodes * i:self.FeatureNodes*(i+1)] = TT1
         HH2 = np.hstack([yy1, 0.1 * np.ones([yy1.shape[0], 1])])
-        TT2 = self.tansig(HH2.dot(self.WeightEnhan))
+        TT2 = self._tansig(HH2.dot(self.WeightEnhan))
         TT3 = np.hstack([yy1, TT2])
         NetoutTest = TT3.dot(self.WeightTop.T)
 
         return NetoutTest
 
-
 class BLSClassifier(BLS):
-    def __init__(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
-        super().__init__()
+    def _init_(self, NumFeatureNodes=10, NumWindows=10, NumEnhance=10, S=0.5, C=2**-30, is_argmax=True):
+        super()._init_()
         self.is_argmax = is_argmax
     def fit(self, train_x, train_y, is_excel_label=False):
         """模型本体"""
@@ -156,7 +150,7 @@ class BLSClassifier(BLS):
             # Feature_EachWindowAfterPreprocess = scaler1.transform(Feature_EachWindow)                               # 进行标准化
 
             Feature_EachWindowAfterPreprocess = Feature_EachWindow  # 进行标准化
-            Beta_EachWindow = self.sparse_bls(Feature_EachWindowAfterPreprocess, Feature_InputDataWithBias).T  # 随机化特征映射初始偏置
+            Beta_EachWindow = self._sparse_bls(Feature_EachWindowAfterPreprocess, Feature_InputDataWithBias).T  # 随机化特征映射初始偏置
             self.Beta1_EachWindow.append(Beta_EachWindow)
             Output_EachWindow = np.dot(Feature_InputDataWithBias, Beta_EachWindow)  # 计算每个特征映射最终输出
 
@@ -175,14 +169,14 @@ class BLSClassifier(BLS):
 
         Temp_Output_EnhanceLayer = np.dot(Input_EnhanceLayerWithBias, self.W_EnhanceLayer)  # 计算增强层中间态
         self.Parameter_Shrink = self.S / np.max(Temp_Output_EnhanceLayer)
-        Output_EnhanceLayer = self.relu(Temp_Output_EnhanceLayer * self.Parameter_Shrink)  # 计算增强层最终输出
+        Output_EnhanceLayer = self._relu(Temp_Output_EnhanceLayer * self.Parameter_Shrink)  # 计算增强层最终输出
 
         # 输出层
         Input_OutputLayer = np.hstack([Output_FeatureMappingLayer, Output_EnhanceLayer])  # 合并特征层和增强层作为输出层输入
-        Pinv_Output = self.cls_pinv(Input_OutputLayer)  # 计算伪逆
+        _pinv_Output = self._pinv_cls(Input_OutputLayer)  # 计算伪逆
 
         # 计算系统总权重
-        self.W = np.dot(Pinv_Output, train_y)
+        self.W = np.dot(_pinv_Output, train_y)
 
         OutputOfTrain = np.dot(Input_OutputLayer, self.W)  # 计算预测输出
 
@@ -210,7 +204,7 @@ class BLSClassifier(BLS):
         test_x_enhance = test_ori_hance
         Input_EnhanceLayerWithBiasTest = np.hstack([test_x_enhance, 0.1 * np.ones((test_x_enhance.shape[0], 1))])
         Temp_Output_EnhanceLayerTest = np.dot(Input_EnhanceLayerWithBiasTest, self.W_EnhanceLayer)
-        Output_EnhanceLayerTest = self.relu(Temp_Output_EnhanceLayerTest * self.Parameter_Shrink)
+        Output_EnhanceLayerTest = self._relu(Temp_Output_EnhanceLayerTest * self.Parameter_Shrink)
         Input_OutputLayerTest = np.hstack([Output_FeatureMappingLayerTest, Output_EnhanceLayerTest])  # 合并特征层和增强层作为测试输出层输入
 
         OutputOfTest = np.dot(Input_OutputLayerTest, self.W)  # 计算预测输出
